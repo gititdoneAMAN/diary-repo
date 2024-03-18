@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("./wallhaven-exrqrr.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+  background: transparent;
+  width: 60%;
+  height: 80vh;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper .left-area {
+  width: 30%;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  padding: 15px;
+}
+
+.wrapper .right-area {
+  width: 70%;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  padding: 15px;
+}
+
+h3 {
+  font-size: 16px;
+  text-align: center;
+}
+
+p {
+  font-size: 12px;
+}
+
+.right-area input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 10px 20px 10px 10px;
+  margin: 10px 0;
+}
+
+.right-area textarea {
+  width: 100%;
+  height: 70%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  padding: 15px 20px 15px 15px;
+  margin: 10px 0;
+  color: #fff;
+  resize: none;
+  overflow: hidden;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: white;
+}
+
+.wrapper .btn {
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0, 0, 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+}
+
+.wrapper .btn:hover {
+  background-color: red;
+  transition: ease-in 0.25s;
+}
+
+.left-area .pages {
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  color: #fff;
+  padding: 5px;
+  backdrop-filter: blur(50px);
+  box-shadow: 0, 0, 10px rgba(0, 0, 0, 0.1);
+}
+
+.pages i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.pages i:hover {
+  color: red;
+  transition: ease-in 0.25s;
+  cursor: pointer;
+}
