@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
   username: String,
   password: String,
   email: String,
+  name: String,
   diaryPage: [
     {
       type: mongoose.Schema.Types.ObjectId,
