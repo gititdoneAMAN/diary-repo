@@ -12,7 +12,13 @@ const signInValidation = zod.object({
   password: zod.string(),
 });
 
+const mainPageValidation = zod.object({
+  title: zod.string(),
+  description: zod.string(),
+});
+
 module.exports = {
   signUpValidation,
   signInValidation,
+  mainPageValidation,
 };

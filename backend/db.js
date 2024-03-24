@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { date } = require("zod");
 
 mongoose.connect("");
 
@@ -18,6 +19,10 @@ const userSchema = mongoose.Schema({
 const pageSchema = mongoose.Schema({
   title: String,
   description: String,
+  date: {
+    type: String,
+    default: new Date(),
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
