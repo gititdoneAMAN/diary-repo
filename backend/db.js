@@ -20,7 +20,7 @@ const pageSchema = mongoose.Schema({
   title: String,
   description: String,
   date: {
-    type: String,
+    type: Date,
     default: new Date(),
   },
   owner: {
@@ -29,10 +29,25 @@ const pageSchema = mongoose.Schema({
   },
 });
 
+const validateSchema = mongoose.Schema({
+  username: String,
+  pageData: [
+    {
+      pageId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Pages",
+      },
+      date: Date,
+    },
+  ],
+});
+
+const Validate = mongoose.model("Restriction", validateSchema);
 const Users = mongoose.model("Users", userSchema);
 const Pages = mongoose.model("Pages", pageSchema);
 
 module.exports = {
   Users,
   Pages,
+  Validate,
 };
