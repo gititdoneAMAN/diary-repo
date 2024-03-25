@@ -13,9 +13,11 @@ const {
   PageMiddleware,
   ValidateMiddleware,
 } = require("./middleware");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // SignIn route
 
@@ -69,7 +71,7 @@ app.post("/signup", async (req, res) => {
       }
     }
   } catch (e) {
-    res.send("There is a error in the signup route");
+    res.json("There is a error in the signup route");
   }
 });
 
@@ -203,3 +205,9 @@ app.get("/logout", UserMiddleware, (req, res) => {
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
+
+function globalCatch(error, req, res, next) {
+  if (error) {
+    res.json({ msg: "There is an error in the backend" });
+  }
+}

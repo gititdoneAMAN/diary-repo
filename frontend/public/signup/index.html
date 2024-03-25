@@ -12,25 +12,31 @@
   </head>
   <body>
     <div class="wrapper">
-      <form action="">
-        <h1>SignUp</h1>
-        <div class="input-box">
-          <input type="text" placeholder="Name" required />
-          <i class="bx bxs-user"></i>
-        </div>
-        <div class="input-box">
-          <input type="text" placeholder="Email" required />
-          <i class="bx bxs-envelope"></i>
-        </div>
-        <div class="input-box">
-          <input type="password" minlength="6" placeholder="password" />
-          <i class="bx bxs-key"></i>
-        </div>
-        <button class="btn">SignUp</button>
-        <div class="sign-in">
-          <p>Already a User? <a href="../signin/index.html">Sign-in</a></p>
-        </div>
-      </form>
+      <h1>SignUp</h1>
+      <div class="input-box">
+        <input type="text" placeholder="Name" id="name" required />
+        <i class="bx bxs-user"></i>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Email" id="email" required />
+        <i class="bx bxs-envelope"></i>
+      </div>
+      <div class="input-box">
+        <input
+          type="password"
+          minlength="6"
+          id="password"
+          placeholder="password"
+        />
+        <i class="bx bxs-key"></i>
+      </div>
+      <button class="btn" onclick="btnClick()">SignUp</button>
+      <div class="sign-in">
+        <p>
+          Already a User? <a href="http://127.0.0.1:5501/index.html">Sign-in</a>
+        </p>
+      </div>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>
