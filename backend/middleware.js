@@ -49,9 +49,9 @@ const ValidateMiddleware = async (req, res, next) => {
   } else {
     data.pageData.map((i) => {
       if (i.date.getDate() == currentDate.getDate()) {
-        res.send(
-          "Only one page can be created on a date! Reedit the previous entry"
-        );
+        res.json({
+          msg: "Only one page can be created on a date! Reedit the previous entry",
+        });
       } else {
         res.send("Done");
       }

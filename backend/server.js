@@ -4,7 +4,7 @@ const {
   signInValidation,
   mainPageValidation,
 } = require("./type");
-const { Users, Pages, Validate } = require("./db");
+const { Users, Pages, Validate, Tokens } = require("./db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const {
@@ -33,6 +33,10 @@ app.post("/signin", async (req, res) => {
 
     if (data) {
       const token = jwt.sign(parsedPayload.data.username, jwtpassword);
+      await Tokens.create({
+        username: parsedPayload.data.username,
+        token: `Bearer ${token}`,
+      });
       if (await bcrypt.compare(parsedPayload.data.password, data.password)) {
         res.json({
           msg: "Success",
@@ -43,6 +47,17 @@ app.post("/signin", async (req, res) => {
       res.json({ msg: "You are not a user yet! SignUp first!" });
     }
   }
+});
+
+// Tokens
+
+app.get("/getToken", async (req, res) => {
+  const username = req.headers.username;
+
+  const data = await Tokens.findOne({ username: username });
+  const token = data.token;
+
+  res.send(token);
 });
 
 // Signup Route

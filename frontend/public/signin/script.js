@@ -6,6 +6,7 @@ async function btnClick() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      username: userElement.value,
     },
     body: JSON.stringify({
       username: userElement.value,
@@ -18,8 +19,9 @@ async function btnClick() {
   if (data.msg == "Success") {
     alert("Welcome USer!");
     const jwtToken = data.token;
-    localStorage.setItem(userElement.value, jwtToken);
-    window.location.href = "http://127.0.0.1:5502/index.html";
+    window.location.href = `http://127.0.0.1:5502/index.html?username=${userElement.value}`;
+  } else {
+    alert("Invalid Credentials please try again");
   }
 
   userElement.value = "";
