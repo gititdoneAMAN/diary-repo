@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { date } = require("zod");
 
-mongoose.connect("");
+mongoose.connect();
 
 const userSchema = mongoose.Schema({
   username: String,

@@ -35,6 +35,12 @@ body {
   gap: 10px;
   text-align: center;
   padding: 15px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+.wrapper.left-area::-webkit-scrollbar {
+  width: none;
 }
 
 .wrapper .right-area {

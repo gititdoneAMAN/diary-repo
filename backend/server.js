@@ -52,12 +52,19 @@ app.post("/signin", async (req, res) => {
 // Tokens
 
 app.get("/getToken", async (req, res) => {
-  const username = req.headers.username;
+  try {
+    const username = req.headers.username;
+    console.log(username);
 
-  const data = await Tokens.findOne({ username: username });
-  const token = data.token;
+    const data = await Tokens.findOne({ username: username });
+    console.log(data);
+    console.log(data.token);
+    const token = data.token;
 
-  res.send(token);
+    res.send(token);
+  } catch (e) {
+    console.log("Error in the getToken route");
+  }
 });
 
 // Signup Route
@@ -92,10 +99,34 @@ app.post("/signup", async (req, res) => {
 
 // Main page routes
 
+app.get("/userData", UserMiddleware, async (req, res) => {
+  console.log(req.username);
+  const data = await Users.findOne({ username: req.username });
+  const pageArray = data.diaryPage;
+  const pageArrayData = [];
+
+  for (let i = 0; i < pageArray.length; i++) {
+    const pageData = await Pages.findOne({ _id: pageArray[i] });
+    const objData = {
+      title: pageData.title,
+      description: pageData.description,
+      date: pageData.date,
+    };
+    pageArrayData.push(objData);
+  }
+
+  console.log(pageArrayData);
+
+  res.json({
+    msg: "Success",
+    content: pageArrayData,
+  });
+});
+
 app.post(
   "/createMainPage",
   UserMiddleware,
-  ValidateMiddleware,
+  // ValidateMiddleware,
   async (req, res) => {
     try {
       const mainPagePayload = req.body;
@@ -112,9 +143,13 @@ app.post(
         const value = { pageId: data._id, date: data.date };
         console.log(data.date);
 
-        await Validate.create({
-          username: req.username,
-        });
+        const checkValid = await Validate.findOne({ username: req.username });
+
+        if (checkValid == null) {
+          await Validate.create({
+            username: req.username,
+          });
+        }
 
         await Validate.updateOne(
           { username: req.username },
@@ -213,8 +248,13 @@ app.delete("/deleteTasks", UserMiddleware, async (req, res) => {
   }
 });
 
-app.get("/logout", UserMiddleware, (req, res) => {
-  res.send("User Logged out");
+app.get("/logout", UserMiddleware, async (req, res) => {
+  try {
+    await Tokens.deleteOne({ username: req.username });
+    res.json({ msg: "Logged out successfully" });
+  } catch (e) {
+    res.json({ msg: "Logged out unsuccessful" });
+  }
 });
 
 app.listen(3000, () => {
