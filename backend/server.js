@@ -105,12 +105,15 @@ app.get("/userData", UserMiddleware, async (req, res) => {
   const pageArray = data.diaryPage;
   const pageArrayData = [];
 
-  for (let i = 0; i < pageArray.length; i++) {
+  for (let i = pageArray.length - 1; i >= 0; i--) {
     const pageData = await Pages.findOne({ _id: pageArray[i] });
+    const pageId = pageData._id;
     const objData = {
       title: pageData.title,
       description: pageData.description,
       date: pageData.date,
+      id: i,
+      pageId: pageId,
     };
     pageArrayData.push(objData);
   }
@@ -203,7 +206,7 @@ app.post(
 // Allows to delete the pages from the diary.
 // MAde change will be visible in Restriction,User,Pages tables and it will be deleted from them
 
-app.delete("/deleteTasks", UserMiddleware, async (req, res) => {
+app.delete("/deletePage", UserMiddleware, async (req, res) => {
   try {
     const id = req.body.id;
     await Pages.deleteOne({ _id: id });
@@ -242,9 +245,9 @@ app.delete("/deleteTasks", UserMiddleware, async (req, res) => {
       );
     }
 
-    res.send("PAge deleted successfully");
+    res.json({ msg: "Page deleted successfully" });
   } catch (e) {
-    res.send("error in the delete route");
+    res.json({ msg: "error in the delete route" });
   }
 });
 

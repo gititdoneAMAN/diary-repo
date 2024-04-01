@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const { date } = require("zod");
 
-mongoose.connect();
+mongoose.connect(
+  "mongodb+srv://AMAN:12345abcde.AMAN@cluster0.0vn5kfy.mongodb.net/Diary"
+);
 
 const userSchema = mongoose.Schema({
   username: String,

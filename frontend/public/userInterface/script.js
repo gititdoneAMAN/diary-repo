@@ -3,12 +3,12 @@ const descriptionElement = document.getElementById("description");
 const logoutElement = document.getElementById("lo");
 const pagesElement = document.getElementsByClassName("pages");
 const leftArea = document.getElementsByClassName("left-area");
-const trash = document.getElementById("trash");
 
 const urlParams = new URLSearchParams(location.search);
 const username = urlParams.get("username");
 
 let renderData;
+let count = 0;
 
 function renderFunction() {
   leftArea[0].innerHTML = ""; // Clear existing content
@@ -24,7 +24,7 @@ function renderFunction() {
 
     div.className = "pages";
     i.className = "bx bxs-trash";
-    i.id = "trash";
+    i.id = count;
 
     const dateArray = page.date.split("-");
 
@@ -39,6 +39,38 @@ function renderFunction() {
     div.appendChild(i);
 
     leftArea[0].appendChild(div);
+
+    document
+      .getElementById(`${count}`)
+      .addEventListener("click", async function () {
+        alert("Deleted");
+
+        const res = await fetch("http://localhost:3000/getToken", {
+          headers: {
+            username: username,
+            "Content-Type": "application/json",
+          },
+        });
+        const token = await res.text();
+
+        const response = await fetch("http://localhost:3000/deletePage", {
+          method: "DELETE",
+          headers: {
+            authorization: token,
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            id: page.pageId,
+          }),
+        });
+        const data = await response.json();
+
+        if ((data.msg = "Page deleted successfully")) {
+          window.location.reload();
+        }
+      });
+
+    count++;
   });
 }
 
@@ -61,7 +93,8 @@ window.onload = async () => {
     });
     const data = await response.json();
     renderData = data.content;
-    console.log(renderData);
+    console.log(typeof renderData);
+
     renderFunction();
   } catch (e) {
     console.error("Error in the onload:", e);
