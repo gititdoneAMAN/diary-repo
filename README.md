@@ -1,12 +1,14 @@
 # Fullstack Diary Project
 
-This project is a fullstack diary application built using JavaScript, HTML, and CSS for the frontend, MongoDB as the database, Express.js for the backend server, and Zod for input validation.
+This project is a fullstack diary application built using JavaScript, HTML, and CSS for the frontend, MongoDB as the database, Express.js for the backend server,jwt for authorization and authentication, and Zod for input validation.
 
 ## Features
 
 - **User Authentication:** Users can sign up and sign in to access their diary.
 - **Diary Pages:** Users can add new pages to their diary.
 - **Delete Pages:** Users can delete existing pages from their diary.
+- **Exclusive:** Only one page can be added on any date.
+- **Exclusive:** Once the day is over , editing is not allowed ,only viewing.
 
 ## Technologies Used
 
@@ -14,6 +16,7 @@ This project is a fullstack diary application built using JavaScript, HTML, and 
 - **Backend:** Express.js
 - **Database:** MongoDB
 - **Input Validation:** Zod
+- **Authorization:** JsonWebTokens(jwt)
 
 ## Getting Started
 
@@ -28,7 +31,7 @@ To run this project locally, follow these steps:
 2. Navigate to the project directory:
 
    ```bash
-   cd <project-directory>
+   cd <project>
    ```
 
 3. Install dependencies for both the frontend and backend:
@@ -59,16 +62,15 @@ To run this project locally, follow these steps:
 
    ```bash
    # From the frontend directory
-   npm start
+   move to each individual page and host it on the local machine
    ```
-
-7. Open your browser and navigate to `http://localhost:3000` to access the diary application.
 
 ## Usage
 
 - Sign up or sign in to access the diary.
 - Add new pages to the diary by providing page content.
 - Delete existing pages from the diary.
+- Read the pages
 
 ## Acknowledgements
 
