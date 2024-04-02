@@ -129,7 +129,7 @@ app.get("/userData", UserMiddleware, async (req, res) => {
 app.post(
   "/createMainPage",
   UserMiddleware,
-  // ValidateMiddleware,
+  ValidateMiddleware,
   async (req, res) => {
     try {
       const mainPagePayload = req.body;
@@ -258,6 +258,18 @@ app.get("/logout", UserMiddleware, async (req, res) => {
   } catch (e) {
     res.json({ msg: "Logged out unsuccessful" });
   }
+});
+
+app.post("/getPageData", UserMiddleware, async (req, res) => {
+  const pageInfo = await Pages.findOne({ _id: req.body.id });
+
+  res.json({
+    title: pageInfo.title,
+    description: pageInfo.description,
+    name: req.username,
+    date: pageInfo.date,
+    msg: "success",
+  });
 });
 
 app.listen(3000, () => {

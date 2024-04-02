@@ -150,3 +150,7 @@ textarea::placeholder {
   color: red;
   transition: ease-out 0.25s;
 }
+
+.edit {
+  background-color: #fff;
+}

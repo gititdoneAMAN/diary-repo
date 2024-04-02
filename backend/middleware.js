@@ -41,21 +41,25 @@ const PageMiddleware = async (req, res, next) => {
 };
 
 const ValidateMiddleware = async (req, res, next) => {
-  const data = await Validate.findOne({ username: req.username });
-  const currentDate = new Date();
-  if (!data) {
-    next();
-    return;
-  } else {
-    data.pageData.map((i) => {
-      if (i.date.getDate() == currentDate.getDate()) {
-        res.json({
-          msg: "Only one page can be created on a date! Reedit the previous entry",
-        });
-      } else {
-        res.send("Done");
-      }
-    });
+  try {
+    const data = await Validate.findOne({ username: req.username });
+    const currentDate = new Date();
+    if (!data) {
+      next();
+      return;
+    } else {
+      data.pageData.map((i) => {
+        if (i.date.getDate() == currentDate.getDate()) {
+          res.json({
+            msg: "Only one page can be created on a date! Reedit the previous entry",
+          });
+        } else {
+          res.send("Done");
+        }
+      });
+    }
+  } catch (e) {
+    console.log(e);
   }
 };
 
