@@ -76,3 +76,5 @@ To run this project locally, follow these steps:
 
 - This project was inspired by the need for a simple and customizable diary application.
 - Special thanks to the developers of Express.js, MongoDB, and Zod for their amazing libraries and tools.
+
+## THIS REPOSITORY IS CREATED AND MAINTAINED BY AMAN KUMAR PANDEY
