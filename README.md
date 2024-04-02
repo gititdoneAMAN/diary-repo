@@ -1,6 +1,6 @@
 # Fullstack Diary Project
 
-This project is a fullstack diary application built using JavaScript, HTML, and CSS for the frontend, MongoDB as the database, Express.js for the backend server,jwt for authorization and authentication, and Zod for input validation.
+This project is a fullstack diary application built using JavaScript, HTML, and CSS for the frontend, MongoDB as the database, Express.js for the backend server,JWT for authorization and authentication, and Zod for input validation.
 
 ## Features
 
